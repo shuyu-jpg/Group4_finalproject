@@ -16,9 +16,9 @@ A machine learning pipeline to predict customer churn for a telecommunications c
 
 ```
 ├── Telco-Customer-Churn.csv       # Dataset
-├── finalcoding2.ipynb             # Logistic Regression + Decision Tree
+├── LR+RF.ipynb                    # Logistic Regression + Random Forest
 ├── SVM.ipynb                      # Support Vector Machine model
-├── train_all_models.py            # (Optional) Run all models together
+├── business analysis code.py      # Run for business insight
 ├── main.py                        # FastAPI app with dashboard
 └── .env-live                      # Environment config (Mongo/S3)
 ```
@@ -89,6 +89,16 @@ pip install -r requirements.txt
 # or manually:
 pip install pandas scikit-learn fastapi uvicorn python-dotenv jrjModelRegistry
 ```
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pip install -r requirements.txt --no-deps
+```
+
+```
+jupyter notebook \
+    --notebook-dir="." \
+    --ip=0.0.0.0 --port=3225
 
 ### 2. Run Jupyter Notebooks
 
@@ -105,13 +115,8 @@ They will handle:
 ### 3. Start FastAPI Server
 
 ```bash
-uvicorn main:app --reload
-
-fast
-```
-or
-
 fastapi dev main.py
+```
 
 Visit: [http://127.0.0.1:8000](http://127.0.0.1:8000)  
 Model dashboard is available via `handleDashboard(app)` integration.
