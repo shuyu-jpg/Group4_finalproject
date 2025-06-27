@@ -17,7 +17,8 @@ A machine learning pipeline to predict customer churn for a telecommunications c
 ```
 ├── Telco-Customer-Churn.csv       # Dataset
 ├── LR+RF.ipynb                    # Logistic Regression + Random Forest
-├── SVM.ipynb                      # Support Vector Machine model
+├── SVM.ipynb                      # SVM model
+├── Decesion Tree.ipynb            # Decesion Tree model
 ├── business analysis code.py      # Run for business insight
 ├── main.py                        # FastAPI app with dashboard
 └── .env-live                      # Environment config (Mongo/S3)
@@ -133,14 +134,11 @@ Model dashboard is available via `handleDashboard(app)` integration.
 - Split into 80% train / 20% test with `random_state=42`
 
 ### 🔹 Step 2: Train Models
-- Notebooks: `finalcoding2.ipynb`, `SVM.ipynb`
+- Notebooks: `LR+RF.ipynb`, `SVM.ipynb`, `Decesion tree.ipynb`
 - Hyperparameter tuning (e.g., C, max_depth)
 - Evaluate with multiple metrics
 - Register models using `jrjModelRegistry`
 
-### 🔹 Step 3: (Optional) Retrain via Script
-```bash
-python train_all_models.py
 ```
 
 
@@ -148,3 +146,9 @@ python train_all_models.py
 
 ## 📎 License
 MIT License
+
+[user]
+# Please adapt and uncomment the following lines:
+        name = <Name>
+        email = <github email>
+        username = <github username>
