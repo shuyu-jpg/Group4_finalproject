@@ -70,20 +70,17 @@ Models are registered using `jrjModelRegistry`.
 ### 1. Install Dependencies
 
 ```bash
+virtualenv venv
+source venv/bin/activate
 pip install -r requirements.txt
-# or manually:
-pip install pandas scikit-learn fastapi uvicorn python-dotenv jrjModelRegistry
+pip install -r requirements.txt --no-deps
+
 ```
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
 pip install -r requirements.txt --no-deps
 ```
-
-```
-jupyter notebook \
-    --notebook-dir="." \
-    --ip=0.0.0.0 --port=3225
 
 ### 2. Launch Jupyter Notebook
 
