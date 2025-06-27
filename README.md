@@ -16,10 +16,9 @@ A machine learning pipeline to predict customer churn for a telecommunications c
 
 ```
 ├── Telco-Customer-Churn.csv       # Dataset
-├── LR+RF.ipynb                    # Logistic Regression + Random Forest
-├── SVM.ipynb                      # SVM model
+├── FINAL-code.ipynb               # 4 model register
 ├── Decesion Tree.ipynb            # Decesion Tree model
-├── business analysis code.py      # Run for business insight
+├── business analysis.py           # Run for business insight
 ├── main.py                        # FastAPI app with dashboard
 └── .env-live                      # Environment config (Mongo/S3)
 ```
@@ -61,22 +60,7 @@ A machine learning pipeline to predict customer churn for a telecommunications c
 
 ## 🧪 Model Registration
 
-Models are registered using `jrjModelRegistry`. Example usage:
-
-```python
-from jrjModelRegistry import registerAJrjModel
-
-registerAJrjModel(
-    model_object,
-    {
-        "modelName": "YourName_ModelName_TelcoChurn",
-        "version": "1.0.0",
-        "metrics": {
-            "accuracy": 0.79,
-            "f1": 0.62
-        }
-    }
-)
+Models are registered using `jrjModelRegistry`. 
 ```
 
 ---
@@ -109,9 +93,7 @@ jupyter notebook \
     --ip=0.0.0.0 --port=3225
 ```
 Open and run:
-- `LR+RF.ipynb`
-- `SVM.ipynb`
-- `Decesion Tree.ipynb`
+- `FINAL-code.ipynb`
 
 These notebooks will handle:
 - Preprocessing
