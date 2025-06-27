@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Telco Customer Churn Table</title>
+    <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css" rel="stylesheet">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>📊 Telco Customer Churn Dataset</h2>
+
+    <label for="churnFilter">Select Model: </label>
+    <select id="churnFilter">
+        <option value="logistic">Logistic Regression</option>
+        <option value="svm">Support Vector Machine</option>
+        <option value="tree">Decision Tree</option>
+        <option value="rf">Random Forest</option>
+    </select>
+
+    <div id="table" style="margin-top: 20px;"></div>
+
+    <script src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+    <script>
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                const table = new Tabulator("#table", {
+                    data: data,
+                    layout: "fitDataStretch",
+                    pagination: "local",
+                    paginationSize: 10,
+                    autoColumns: false,
+                    columns: [
+                        { title: "Customer ID", field: "customerID" },
+                        { title: "Gender", field: "gender" },
+                        { title: "Senior", field: "SeniorCitizen" },
+                        { title: "Partner", field: "Partner" },
+                        { title: "Dependents", field: "Dependents" },
+                        { title: "Tenure", field: "tenure" },
+                        { title: "Phone", field: "PhoneService" },
+                        { title: "Internet", field: "InternetService" },
+                        { title: "Contract", field: "Contract" },
+                        { title: "Monthly Charges", field: "MonthlyCharges" },
+                        { title: "Total Charges", field: "TotalCharges" },
+                        { title: "Churn", field: "Churn" },
+                        {
+                            title: "Action",
+                            formatter: function(cell){
+                                return `
+                                    <button class="delete-btn" style="color:red;border:1px solid red;padding:4px 8px;margin-right:4px;">Delete</button>
+                                    <button class="test-btn" style="border:1px solid #ccc;padding:4px 8px;">Test</button>
+                                `;
+                            },
+                            width: 150,
+                            hozAlign: "center",
+                            cellClick: function(e, cell){
+                                const row = cell.getRow().getData();
+                                if (e.target.classList.contains("delete-btn")) {
+                                    alert("Delete customer: " + row.customerID);
+                                } else if (e.target.classList.contains("test-btn")) {
+                                    const modelType = document.getElementById("churnFilter").value;
+                                    fetch(`/predict/${modelType}`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify(row)
+                                    })
+                                    .then(response => response.json())
+                                    .then(result => {
+                                                if (result.error) {
+                                                    alert("Prediction Error:\n" + result.error);
+                                                } else {
+                                                    alert(
+                                                        `Prediction Result\n\n` +
+                                                        `Customer ID: ${result.customerID}\n` +
+                                                        `Prediction: ${result.prediction === 1 ? "Churn" : "Stay"}\n` +
+                                                        `Confidence: ${
+                                                        result.probability
+                                                            ? `${(result.probability[0] * 100).toFixed(1)}% Stay / ${(result.probability[1] * 100).toFixed(1)}% Churn`
+                                                            : "N/A"
+                                                        }`
+                                                    );
+                                                }
+                                            })
+
+                                    .catch(error => {
+                                        alert("Error during prediction:\\n" + error);
+                                    });
+                                }
+                            }
+                        }
+                    ]
+                });
+            });
+    </script>
+</body>
+</html>
