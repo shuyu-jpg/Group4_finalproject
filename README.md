@@ -1,9 +1,9 @@
-# 📊 Telco Customer Churn Prediction Project
+# Telco Customer Churn Prediction Project
 
-## 📌 Overview
+## Overview
 A machine learning pipeline to predict customer churn for a telecommunications company. Completed by Group 4 using the CRISP-DM framework.
 
-### 🔑 Key Features
+### Key Features
 - Data preprocessing & feature engineering
 - Model training and comparison: Logistic Regression, Decision Tree, Random Forest, SVM
 - Performance evaluation with metrics (Accuracy, F1-score, ROC-AUC)
@@ -81,7 +81,7 @@ registerAJrjModel(
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
 ### 1. Install Dependencies
 
@@ -101,15 +101,20 @@ jupyter notebook \
     --notebook-dir="." \
     --ip=0.0.0.0 --port=3225
 
-### 2. Run Jupyter Notebooks
+### 2. Launch Jupyter Notebook
 
-Open and execute:
-
-- `finalcoding2.ipynb`
+```bash
+jupyter notebook \
+    --notebook-dir="." \
+    --ip=0.0.0.0 --port=3225
+```
+Open and run:
+- `LR+RF.ipynb`
 - `SVM.ipynb`
+- `Decesion Tree.ipynb`
 
-They will handle:
-- Data preprocessing
+These notebooks will handle:
+- Preprocessing
 - Model training
 - Evaluation and registration
 
@@ -144,8 +149,20 @@ Model dashboard is available via `handleDashboard(app)` integration.
 
 ---
 
-## 📎 License
-MIT License
+
+## 🔐 Enable Git Push Access
+
+```bash
+nano ~/.gitconfig
+```
+
+or
+
+```bash
+code ~/.gitconfig
+```
+
+```ini
 
 [user]
 # Please adapt and uncomment the following lines:
