@@ -39,7 +39,7 @@ An interactive machine learning dashboard to predict customer churn for a teleco
 
 ```bash
 git clone https://github.com/shuyu-jpg/Group4_finalproject.git
-cd Group4_finalproject
+cd Group4_finalproject/method2
 ```
 
 2. **Install dependencies**
